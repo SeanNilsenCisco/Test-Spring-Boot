@@ -2,6 +2,7 @@ package testspringbootmvc.demo.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,6 +31,16 @@ public class ContactController {
 
         //Add that contact to the model
         model.addAttribute("contact", cm);
+
+        return "contact";
+
+    }
+
+    @RequestMapping(value="/contact", method= RequestMethod.POST)
+    public String contactPost(@ModelAttribute("contact") ContactModel contactModel, Model model){
+
+        //Create a contact
+        System.out.println("Received ContactModel: " + contactModel.toString());
 
         return "contact";
 
